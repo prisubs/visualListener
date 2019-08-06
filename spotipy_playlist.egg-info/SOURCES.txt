@@ -1,0 +1,6 @@
+README.md
+setup.py
+spotipy_playlist.egg-info/PKG-INFO
+spotipy_playlist.egg-info/SOURCES.txt
+spotipy_playlist.egg-info/dependency_links.txt
+spotipy_playlist.egg-info/top_level.txt
