@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e73ec6-9633-4109-bcae-6999f670efbe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spotipy-playlist/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spotipy-playlist/scraping.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spotipy-playlist/spotipy_playlist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playground_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/playground_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playground_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/playground_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotipy-playlist/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotipy-playlist/scraping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotipy-playlist/spotipy_playlist.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,22 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spotipy-playlist/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="50" selection-start-column="50" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spotipy-playlist/scraping.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,6 +36,7 @@
         <option value="$PROJECT_DIR$/scraping.py" />
         <option value="$PROJECT_DIR$/spotipy_playlist.py" />
         <option value="$PROJECT_DIR$/spotipy-playlist/__init__.py" />
+        <option value="$PROJECT_DIR$/spotipy-playlist/setup.py" />
       </list>
     </option>
   </component>
@@ -73,11 +61,6 @@
               <item name="SpotiPyPlaylist" type="b2602c69:ProjectViewProjectNode" />
               <item name="SpotiPyPlaylist" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SpotiPyPlaylist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SpotiPyPlaylist" type="462c0819:PsiDirectoryNode" />
-              <item name="spotipy-playlist" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -90,6 +73,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/spotipy-playlist" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/spotipy-playlist" />
     </key>
@@ -121,7 +107,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1290" height="837" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980299" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -175,8 +160,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spotipy-playlist/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="50" />
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotipy-playlist/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
