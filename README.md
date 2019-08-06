@@ -20,7 +20,7 @@ client = SpotiPyPlaylistClient(YOUR_GENIUS_API_KEY)
 ## Data Pulling
 SpotiPyPlaylist supports gathering playlist lyrics data, given web URLs. To find web URLs, select "Copy Playlist Link" from the share menu on the Spotify web or mobile apps, or "Copy Profile Link" from a user profile.
 
-![playlist_instructions](playlistget.png)
+![playlist_instructions](docs/playlistget.png)
 
 <br>
 
