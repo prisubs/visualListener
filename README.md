@@ -1,4 +1,4 @@
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php) &nbsp;&nbsp;&nbsp; ![badge](https://img.shields.io/static/v1?label=1.0&message=stable&color=brightgreen)&nbsp;&nbsp;&nbsp;[![PyPI version](https://badge.fury.io/py/spotipy-playlist.svg)](https://badge.fury.io/py/spotipy-playlist)&nbsp;&nbsp;&nbsp;         ![pybuild](https://img.shields.io/pypi/pyversions/spotipy-playlist) &nbsp;&nbsp;&nbsp; [![sizebadge](https://badge-size.herokuapp.com/Naereen/StrapDown.js/master/strapdown.min.js)](https://github.com/prisubs/spotipy-playlist)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![PyPI version](https://badge.fury.io/py/spotipy-playlist.svg)](https://badge.fury.io/py/spotipy-playlist)&nbsp;&nbsp;&nbsp;         ![pybuild](https://img.shields.io/pypi/pyversions/spotipy-playlist) &nbsp;&nbsp;&nbsp; [![sizebadge](https://badge-size.herokuapp.com/Naereen/StrapDown.js/master/strapdown.min.js)](https://github.com/prisubs/spotipy-playlist)
 
 
 
@@ -7,7 +7,7 @@ A Spotify-based lyrics analytics client for Python, written with the help of [ly
 <br>
 <br>
 
-## What's New in Version 2
+## What's new in version 2
 * Caching lyrics on the client object to avoid re-downloading them
 * Domain-specific stop word list, including slang and musical terms
 * Top frequent keywords using tailored stop list
@@ -83,4 +83,26 @@ Once a playlist url pull has happened on a `SpotiPyPlaylistClient` object, that 
 )
 
 Successfully cached 3 songs.
+```
+<br>
+
+## Analysis
+`spotipy-playlist` has a stop words list that has been fitted through trial and error to cover most of the vocabulary in modern music lyrics, as well as musical terms (like chorus, verse).
+
+``` python
+>>> MY_STOPWORDS = client.musical_stopwords
+```
+
+<br>
+
+You can also get the n most common keywords in the song, using an [sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html) `CountVectorizer` which has been fitted with the musical stop words.
+
+``` python
+>>> client.keyword_counter(n=4)
+[
+	"nicki",
+	"get money",
+	"ride",
+	"pop"
+]
 ```
