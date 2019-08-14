@@ -6,6 +6,12 @@
 A Spotify-based lyrics analytics client for Python, written with the help of [lyricsgenius](https://pypi.org/project/lyricsgenius/0.3/).
 <br>
 <br>
+
+## What's New in Version 2
+* Caching lyrics on the client object to avoid re-downloading them
+* Domain-specific stop word list, including slang and musical terms
+* Top frequent keywords using tailored stop list
+
 ## Getting Started 
 This package requires you to have your own Genius API key on initialization. You can get one on the Genius page [here](https://genius.com/signup_or_login). Once you've done that, SpotiPyPlaylist is available on [PyPi](https://pypi.org) as a pip installable package.
 
@@ -59,4 +65,22 @@ Gets name and playlist list of a user, given a public profile URL.
       'nice soft feeling', 'sadboi hours', 'serotonin rush', 'edgy', 'hooligan booligan backyardigan',
       'circa 1600', 'k-pop x vocaloid']
 }
+```
+
+<br>
+
+Once a playlist url pull has happened on a `SpotiPyPlaylistClient` object, that dataframe will be cached to use for all further lyrics analysis functions. You can also upload your own playlist, which needs to be formatted as a Python list-like object or a pandas `Series` of strings.
+
+<br> 
+
+``` python
+>>> client.custom_lyrics(
+	  [
+		  "[Chorus: Camila Cabello] I love it when you",
+		  "[Intro: Billy Ray Cyrus]Oh, oh-oh Oh [Re",
+		  "[Verse 1]Are we better off believing What t..."
+	  ]
+)
+
+Successfully cached 3 songs.
 ```
