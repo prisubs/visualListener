@@ -8,7 +8,7 @@ long_des =  '''
 
 setuptools.setup(
     name="spotipy-playlist",
-    version="1",
+    version="2",
     author="Prianka Subrahmanyam",
     author_email="prianka.subrahmanyam@gmail.com",
     description="Spotify lyrics analytics client",
