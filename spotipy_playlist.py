@@ -1,4 +1,6 @@
 import scraping
+import musical_stop_words
+import analysis
 from pandas import DataFrame
 
 
@@ -27,5 +29,21 @@ class SpotiPyPlaylistClient:
 
         except:
             return "Your lyrics data was not formatted properly."
+
+    @staticmethod
+    def musical_stopwords():
+        return musical_stop_words.stop
+
+    def keyword_counter(self, n=15):
+        if len(self.lyrics_cached) > 0:
+            lyrics = list(self.lyrics_cached["lyrics"])
+            return analysis.keywords(lyrics, n)
+
+        else:
+            return "No lyrics cached on this client."
+
+
+
+
 
 
