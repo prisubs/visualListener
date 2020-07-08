@@ -1,4 +1,5 @@
 from scraping import *
+from language import *
 
 class SpotifyUser:
     def __init__(self, url, genius_key):
@@ -17,3 +18,13 @@ class SpotifyUser:
         print("**************")
         for i in range(1, self.num_playlists + 1):
             print("{0}. {1}".format(i, playlists[i-1]))
+
+    # combine all playlist songs into one df
+    def merge_dfs(self):
+        df_dict = self.playlist_data
+        dfs = []
+        for df in df_dict:
+            dfs.append(df_dict[df])
+            df = pd.concat(dfs)
+        df = df.drop_duplicates(subset = "title", keep = False, inplace = False)
+        return df
