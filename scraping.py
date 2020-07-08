@@ -1,14 +1,13 @@
+import pandas as pd
+import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import re
-import pandas as pd
 import lyricsgenius
+from lxml import html
 
-'''
-Constructs a dataframe for a playlist
-'''
+# constructs dataframe for a user playlist
 def playlist_df(url, genius_key):
-
     titles = scrape_titles(url)
     artists = scrape_artists(url)
 
@@ -21,23 +20,8 @@ def playlist_df(url, genius_key):
 
     return df
 
-'''
-Constructs a dictionary for a user
-'''
-def user_dict(url):
-    name = scrape_name(url)
-    playlists = scrape_user_playlists(url).tolist()
-
-    return {
-        "name": name,
-        "playlists": playlists
-    }
-
-'''
-Grabs lyrics for a single song and artist pair
-'''
+# lyrics for a song and artist pair
 def grab_song(title, artist, key):
-
     genius = lyricsgenius.Genius(key)
     song = genius.search_song(title, artist)
 
@@ -46,14 +30,10 @@ def grab_song(title, artist, key):
     elif artist == "":
         return "no lyrics found"
     else:
-        return grab_song(title, "")
+        return grab_song(title, "", key)
 
-
-'''
-Base scraping function, no-frills
-'''
+# Base scraping function
 def scrape_something(url, classname, single_val=False):
-
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -68,49 +48,65 @@ def scrape_something(url, classname, single_val=False):
     else:
         return result
 
-
-'''
-Titles for a single playlist
-'''
+# Titles for a single playlist
 def scrape_titles(query):
-
     song_titles = scrape_something(query, "track-name")
     return song_titles
 
-
-'''
-Artists for a single playlist
-'''
+# Artists for a single playlist
 def scrape_artists(query):
-
     artists = scrape_something(query, "artists-albums")
     artists = artists.apply(clean_artists)
     return artists
 
-
-'''
-Cleaning the dot and extra space around artist name
-'''
+# Cleaning the dot and extra space around artist name
 def clean_artists(artist_name):
-
     x = artist_name.split("•")[0]
     return re.sub('\s+', ' ', x).strip()
 
-
-'''
-Name for a single user
-'''
+# Name for a single user
 def scrape_name(query):
-
     name = scrape_something(query, "view-header", single_val=True)
     return name
 
-
-'''
-List of playlist titles for a single user
-'''
+# List of playlist titles and URLs (for further analysis) for a single user
 def scrape_user_playlists(query):
-
     playlists = scrape_something(query, "cover playlist")
     return playlists
 
+# use a regex to clean out extraneous urls + construct full url list
+def process_playlist_urls(urls):
+    spotify_base = "https://open.spotify.com"
+    cleaned = []
+    for url in urls:
+        if re.findall(r"\/playlist\/.*", url):
+            cleaned.append(url)
+    cleaned = [spotify_base + url for url in cleaned]
+    return cleaned
+
+# dynamically construct playlist URLs by finding them on user's profile
+def pull_user_playlists(url):
+    playlist_names = scrape_user_playlists(url)
+
+    # get playlist urls
+    page = requests.get(url)
+    webpage = html.fromstring(page.content)
+    urls = webpage.xpath('//a/@href')
+
+    spotify_base = "https://open.spotify.com"
+    cleaned = []
+    for url in urls:
+        if re.findall(r"\/playlist\/.*", url):
+            cleaned.append(url)
+    cleaned = [spotify_base + url for url in cleaned]
+    df = pd.DataFrame(list(zip(playlist_names, cleaned)), columns =['playlist_name', 'playlist_url'])
+    return df
+
+# get lyrics and data for playlists given df of names and urls
+def playlist_datagrab(df, token):
+    urls = df["playlist_url"].tolist()
+    result = {}
+    for url in urls:
+        p_df = playlist_df(url, token)
+        result[url] = p_df
+    return result
