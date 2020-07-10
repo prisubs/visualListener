@@ -20,11 +20,14 @@ class SpotifyUser:
             print("{0}. {1}".format(i, playlists[i-1]))
 
     # combine all playlist songs into one df
-    def merge_dfs(self):
+    def clean_and_merge_dfs(self):
         df_dict = self.playlist_data
         dfs = []
         for df in df_dict:
             dfs.append(df_dict[df])
-            df = pd.concat(dfs)
+
+        df = pd.concat(dfs)
         df = df.drop_duplicates(subset = "title", keep = False, inplace = False)
-        return df
+
+        return transform(df)
+

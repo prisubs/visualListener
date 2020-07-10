@@ -1,10 +1,10 @@
 import pandas as pd
-import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import re
 import lyricsgenius
 from lxml import html
+
 
 # constructs dataframe for a user playlist
 def playlist_df(url, genius_key):
@@ -20,6 +20,7 @@ def playlist_df(url, genius_key):
 
     return df
 
+
 # lyrics for a song and artist pair
 def grab_song(title, artist, key):
     genius = lyricsgenius.Genius(key)
@@ -31,6 +32,7 @@ def grab_song(title, artist, key):
         return "no lyrics found"
     else:
         return grab_song(title, "", key)
+
 
 # Base scraping function
 def scrape_something(url, classname, single_val=False):
@@ -48,10 +50,12 @@ def scrape_something(url, classname, single_val=False):
     else:
         return result
 
+
 # Titles for a single playlist
 def scrape_titles(query):
     song_titles = scrape_something(query, "track-name")
     return song_titles
+
 
 # Artists for a single playlist
 def scrape_artists(query):
@@ -59,20 +63,24 @@ def scrape_artists(query):
     artists = artists.apply(clean_artists)
     return artists
 
+
 # Cleaning the dot and extra space around artist name
 def clean_artists(artist_name):
     x = artist_name.split("•")[0]
     return re.sub('\s+', ' ', x).strip()
+
 
 # Name for a single user
 def scrape_name(query):
     name = scrape_something(query, "view-header", single_val=True)
     return name
 
+
 # List of playlist titles and URLs (for further analysis) for a single user
 def scrape_user_playlists(query):
     playlists = scrape_something(query, "cover playlist")
     return playlists
+
 
 # use a regex to clean out extraneous urls + construct full url list
 def process_playlist_urls(urls):
@@ -83,6 +91,7 @@ def process_playlist_urls(urls):
             cleaned.append(url)
     cleaned = [spotify_base + url for url in cleaned]
     return cleaned
+
 
 # dynamically construct playlist URLs by finding them on user's profile
 def pull_user_playlists(url):
@@ -101,6 +110,7 @@ def pull_user_playlists(url):
     cleaned = [spotify_base + url for url in cleaned]
     df = pd.DataFrame(list(zip(playlist_names, cleaned)), columns =['playlist_name', 'playlist_url'])
     return df
+
 
 # get lyrics and data for playlists given df of names and urls
 def playlist_datagrab(df, token):
